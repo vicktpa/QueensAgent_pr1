@@ -28,7 +28,7 @@ sudo apt install -y libqt6gui6
 2. Установить CMake:
 Скачать cmake-3.29.0-windows-x86_64.msi (или новее) с сайта https://cmake.org/download/.
 При установке выбрать опцию "Add CMake to the system PATH". 
-3. Установить QT 6 (сайт https://www.qt.io/download не доступен с территории РФ).
+3. Установить QT 6 с сайта https://www.qt.io/download
 
 
 Сборка и запуск проекта: 

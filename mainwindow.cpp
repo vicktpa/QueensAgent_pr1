@@ -5,7 +5,6 @@
 #include <QHBoxLayout>
 #include <QGroupBox>
 #include <QMessageBox>
-#include <QStatusBar>
 #include <QThread>
 #include <QTextEdit>
 #include <QScrollBar>
@@ -26,7 +25,7 @@ MainWindow::MainWindow(QWidget* parent): QMainWindow(parent), m_isSolving(false)
 {
     setupUI();
     connectSignals();
-    setWindowTitle("N-Queens Problem - Agent-Based Solution");
+    setWindowTitle("Задача о ферзях. Пункт 1");
     resize(1100, 800);
 }
 
@@ -62,7 +61,7 @@ void MainWindow::setupUI(){
     QHBoxLayout* settingsLayout = new QHBoxLayout();
     settingsLayout->addWidget(new QLabel("Размер доски (N):", this));
     m_boardSizeSpinBox = new QSpinBox(this);
-    m_boardSizeSpinBox->setRange(4, 10);  // Ограничение для предотвращения краша
+    m_boardSizeSpinBox->setRange(4, 12);  // Ограничение для предотвращения краша
     m_boardSizeSpinBox->setValue(8);
     settingsLayout->addWidget(m_boardSizeSpinBox);
     settingsLayout->addStretch();
@@ -145,9 +144,6 @@ void MainWindow::setupUI(){
     // Добавляем панели в основной layout
     mainLayout->addWidget(leftPanel, 2);
     mainLayout->addWidget(rightPanel, 1);
-
-    // Статусная строка
-    statusBar()->addWidget(new QLabel("Готов к работе", this));
 }
 
 /* Подключение сигналов к слотам */
@@ -200,7 +196,7 @@ void MainWindow::startSolving() {
     m_solver = new QueensSolver(boardSize);
     m_solver->moveToThread(m_solverThread);
 
-    // Подключаем сигналы
+    // Подключаем сигналы QueensSolver
     connect(m_solverThread, &QThread::started, m_solver, &QueensSolver::solve);
     connect(m_solver, &QueensSolver::solutionFound, this, &MainWindow::onSolutionFound);
     connect(m_solver, &QueensSolver::solutionPrinted, this, &MainWindow::onSolutionPrinted);
